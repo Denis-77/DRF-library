@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from os import getenv
 
 import app_library.apps
 
@@ -22,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^5x@6#1=j$baepr_3#l5na=oh_^42y*6hj2yr-_v^8n_hgw1xi'
+SECRET_KEY = getenv('DJANGO_SECRET_KEY', False) == '1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = getenv('DJANGO_DEBUG', False) == '1'
 
 ALLOWED_HOSTS = []
 
